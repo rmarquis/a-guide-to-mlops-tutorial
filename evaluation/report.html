@@ -47,21 +47,8 @@
     "title": "",
     "width": 300,
     "height": 300,
-    "params": [
-        {
-            "name": "smooth",
-            "value": 0.001,
-            "bind": {
-                "input": "range",
-                "min": 0.001,
-                "max": 1,
-                "step": 0.001
-            }
-        }
-    ],
     "layer": [
         {
-            "mark": "line",
             "encoding": {
                 "x": {
                     "field": "step",
@@ -79,50 +66,61 @@
                 "color": {
                     "field": "rev",
                     "type": "nominal"
-                }
+                },
+                "tooltip": [
+                    {
+                        "field": "step",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "roc_auc",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "rev",
+                        "type": "nominal"
+                    }
+                ]
             },
-            "transform": [
+            "layer": [
                 {
-                    "loess": "roc_auc",
-                    "on": "step",
-                    "groupby": [
-                        "rev",
-                        "filename",
-                        "field",
-                        "filename::field"
+                    "mark": "line"
+                },
+                {
+                    "transform": [
+                        {
+                            "filter": {
+                                "param": "hover",
+                                "empty": false
+                            }
+                        }
                     ],
-                    "bandwidth": {
-                        "signal": "smooth"
+                    "mark": "circle"
+                },
+                {
+                    "mark": "rule",
+                    "params": [
+                        {
+                            "name": "hover",
+                            "select": {
+                                "type": "point",
+                                "on": "mouseover",
+                                "nearest": true
+                            }
+                        }
+                    ],
+                    "encoding": {
+                        "color": {
+                            "condition": {
+                                "param": "hover",
+                                "empty": false,
+                                "value": "1"
+                            },
+                            "value": "transparent"
+                        }
                     }
                 }
             ]
-        },
-        {
-            "mark": {
-                "type": "point",
-                "tooltip": {
-                    "content": "data"
-                }
-            },
-            "encoding": {
-                "x": {
-                    "field": "step",
-                    "type": "quantitative",
-                    "title": "step"
-                },
-                "y": {
-                    "field": "roc_auc",
-                    "type": "quantitative",
-                    "title": "roc_auc",
-                    "scale": {
-                        "zero": false
-                    }
-                },
-                "color": {
-                    "field": "rev",
-                    "type": "nominal"
-                }
-            }
         }
     ]
 }
@@ -148,21 +146,8 @@
     "title": "",
     "width": 300,
     "height": 300,
-    "params": [
-        {
-            "name": "smooth",
-            "value": 0.001,
-            "bind": {
-                "input": "range",
-                "min": 0.001,
-                "max": 1,
-                "step": 0.001
-            }
-        }
-    ],
     "layer": [
         {
-            "mark": "line",
             "encoding": {
                 "x": {
                     "field": "step",
@@ -180,50 +165,61 @@
                 "color": {
                     "field": "rev",
                     "type": "nominal"
-                }
+                },
+                "tooltip": [
+                    {
+                        "field": "step",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "avg_prec",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "rev",
+                        "type": "nominal"
+                    }
+                ]
             },
-            "transform": [
+            "layer": [
                 {
-                    "loess": "avg_prec",
-                    "on": "step",
-                    "groupby": [
-                        "rev",
-                        "filename",
-                        "field",
-                        "filename::field"
+                    "mark": "line"
+                },
+                {
+                    "transform": [
+                        {
+                            "filter": {
+                                "param": "hover",
+                                "empty": false
+                            }
+                        }
                     ],
-                    "bandwidth": {
-                        "signal": "smooth"
+                    "mark": "circle"
+                },
+                {
+                    "mark": "rule",
+                    "params": [
+                        {
+                            "name": "hover",
+                            "select": {
+                                "type": "point",
+                                "on": "mouseover",
+                                "nearest": true
+                            }
+                        }
+                    ],
+                    "encoding": {
+                        "color": {
+                            "condition": {
+                                "param": "hover",
+                                "empty": false,
+                                "value": "1"
+                            },
+                            "value": "transparent"
+                        }
                     }
                 }
             ]
-        },
-        {
-            "mark": {
-                "type": "point",
-                "tooltip": {
-                    "content": "data"
-                }
-            },
-            "encoding": {
-                "x": {
-                    "field": "step",
-                    "type": "quantitative",
-                    "title": "step"
-                },
-                "y": {
-                    "field": "avg_prec",
-                    "type": "quantitative",
-                    "title": "avg_prec",
-                    "scale": {
-                        "zero": false
-                    }
-                },
-                "color": {
-                    "field": "rev",
-                    "type": "nominal"
-                }
-            }
         }
     ]
 }
@@ -11145,21 +11141,8 @@
     "title": "Receiver operating characteristic (ROC)",
     "width": 300,
     "height": 300,
-    "params": [
-        {
-            "name": "smooth",
-            "value": 0.001,
-            "bind": {
-                "input": "range",
-                "min": 0.001,
-                "max": 1,
-                "step": 0.001
-            }
-        }
-    ],
     "layer": [
         {
-            "mark": "line",
             "encoding": {
                 "x": {
                     "field": "fpr",
@@ -11177,50 +11160,61 @@
                 "color": {
                     "field": "rev",
                     "type": "nominal"
-                }
+                },
+                "tooltip": [
+                    {
+                        "field": "fpr",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "tpr",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "rev",
+                        "type": "nominal"
+                    }
+                ]
             },
-            "transform": [
+            "layer": [
                 {
-                    "loess": "tpr",
-                    "on": "fpr",
-                    "groupby": [
-                        "rev",
-                        "filename",
-                        "field",
-                        "filename::field"
+                    "mark": "line"
+                },
+                {
+                    "transform": [
+                        {
+                            "filter": {
+                                "param": "hover",
+                                "empty": false
+                            }
+                        }
                     ],
-                    "bandwidth": {
-                        "signal": "smooth"
+                    "mark": "circle"
+                },
+                {
+                    "mark": "rule",
+                    "params": [
+                        {
+                            "name": "hover",
+                            "select": {
+                                "type": "point",
+                                "on": "mouseover",
+                                "nearest": true
+                            }
+                        }
+                    ],
+                    "encoding": {
+                        "color": {
+                            "condition": {
+                                "param": "hover",
+                                "empty": false,
+                                "value": "1"
+                            },
+                            "value": "transparent"
+                        }
                     }
                 }
             ]
-        },
-        {
-            "mark": {
-                "type": "point",
-                "tooltip": {
-                    "content": "data"
-                }
-            },
-            "encoding": {
-                "x": {
-                    "field": "fpr",
-                    "type": "quantitative",
-                    "title": "False Positive Rate"
-                },
-                "y": {
-                    "field": "tpr",
-                    "type": "quantitative",
-                    "title": "True Positive Rate",
-                    "scale": {
-                        "zero": false
-                    }
-                },
-                "color": {
-                    "field": "rev",
-                    "type": "nominal"
-                }
-            }
         }
     ]
 }
